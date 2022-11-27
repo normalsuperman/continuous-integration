@@ -19,6 +19,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/upload-artifact@main
+        with:
+          name: remark-lint-report
+          path: public/
+          
       - uses: actions/checkout@v2
 
       - name: Run markdown lint
@@ -26,7 +31,4 @@ jobs:
           npm install remark-cli remark-preset-lint-consistent
           npx remark . --use remark-preset-lint-consistent --frail
 
-      - uses: actions/upload-artifact@main
-        with:
-          name: remark-lint-report
-          path: public/
+      
